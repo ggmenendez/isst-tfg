@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+	<servlet>
+		<servlet-name>TfgISST</servlet-name>
+		<servlet-class>es.upm.dit.isst.tfg.TfgISSTServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MailAlumno</servlet-name>
+		<url-pattern>/_ah/mail/shu_alumnito</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>MailAlumno</servlet-name>
+		<servlet-class>es.upm.dit.isst.tfg.MailAlumnoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MailTutor</servlet-name>
+		<url-pattern>/_ah/mail/the_one</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>MailTutor</servlet-name>
+		<servlet-class>es.upm.dit.isst.tfg.MailTutorServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TfgISST</servlet-name>
+		<url-pattern>/tfgisst</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Profile</servlet-name>
+		<servlet-class>es.upm.dit.isst.tfg.ProfileServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Profile</servlet-name>
+		<url-pattern>/profile</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>chooseTFG</servlet-name>
+		<servlet-class>es.upm.dit.isst.tfg.ChooseTFGServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>chooseTFG</servlet-name>
+		<url-pattern>/tfg</url-pattern>
+	</servlet-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+</web-app>
