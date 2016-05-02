@@ -37,7 +37,7 @@
 				</c:when>
 				<c:when test="${empty tfgs}">
 					<p>Aún no has seleccionado ningún TFG, ¿Empezamos?</p>
-					<form action="/tfg" method="post" acceptcharset="utf-8">
+					<form action="/profile" method="post" acceptcharset="utf-8">
 			            <input type="text" name="titulo" id="titulo" maxLength="255"
 			                size="20" required placeholder="Titulo" />
 			            <input type="text"

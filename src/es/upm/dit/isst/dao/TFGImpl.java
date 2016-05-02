@@ -1,8 +1,5 @@
 package es.upm.dit.isst.dao;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-
 import java.util.List;
 
 import javax.persistence.*;
@@ -40,7 +37,7 @@ public class TFGImpl implements TFGDAO {
 		EntityManager em = EMFService.get().createEntityManager(); 
 		Query q = em.createQuery("select t from TFG t where t.autor = :autor"); 
 		q.setParameter("autor", autor); 
-		TFG res =  null; 
+		TFG res =  null;
 		List<TFG> tfgs = q.getResultList(); 
 		if (tfgs.size() > 0) 
 			res = (TFG) (q.getResultList().get(0)); 

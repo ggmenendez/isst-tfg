@@ -22,22 +22,49 @@ public class ProfileServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String user = null;
 		user = req.getParameter("name");
-		
-		TFGDAO tfgDAO = TFGImpl.getInstance();
-		TFG tfg = null;
-		List<TFG> tfgs = null;
-		tfg = tfgDAO.readByAutor(user);
-		hasTFG = (tfg != null);
-		req.getSession().setAttribute("hasTFG", hasTFG);
-		if (hasTFG)
-			req.getSession().setAttribute("tfg", tfg);
-		else {
-			tfgs = tfgDAO.readByTutor(user);
-			if (tfgs != null)
-				req.getSession().setAttribute("tfgs", new ArrayList<TFG>(tfgs));
+		try {
+			TFGDAO tfgDAO = TFGImpl.getInstance();
+			TFG tfg = null;
+			List<TFG> tfgs = null;
+			tfg = tfgDAO.readByAutor(user);
+			hasTFG = (tfg != null);
+			req.getSession().setAttribute("hasTFG", hasTFG);
+			if (hasTFG)
+				req.getSession().setAttribute("tfg", tfg);
+			else {
+				tfgs = tfgDAO.readByTutor(user);
+				if (tfgs != null)
+					req.getSession().setAttribute("tfgs", new ArrayList<TFG>(tfgs));
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
-		
+				
 		RequestDispatcher view = req.getRequestDispatcher("profile.jsp");
         view.forward(req, resp);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String user, titulo, resumen, tutor;
+//		try {
+			titulo = (String) req.getParameter("titulo");
+			resumen = (String) req.getParameter("resumen");
+			tutor = (String) req.getParameter("tutor");
+
+			System.out.println(titulo);
+			System.out.println(tutor);
+			System.out.println(resumen);
+			
+			if (titulo != null && resumen != null && tutor != null) {
+				user = req.getUserPrincipal().getName().split("@")[0];
+				TFGImpl tfgdao = TFGImpl.getInstance();
+				tfgdao.create(user, titulo, resumen, tutor, "", "", 0);
+				resp.sendRedirect("/tfgisst");
+			}	
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			resp.sendRedirect("/profile");
+//		}
 	}
 }

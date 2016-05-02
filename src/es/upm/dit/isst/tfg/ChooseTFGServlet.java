@@ -15,23 +15,6 @@ public class ChooseTFGServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String user, titulo, resumen, tutor;
-		try {
-			titulo = (String) req.getSession().getAttribute("titulo");
-			resumen = (String) req.getSession().getAttribute("resumen");
-			tutor = (String) req.getSession().getAttribute("tutor");
-			
-			if (!titulo.equals("") && !tutor.equals("")){
-				TFGImpl tfgdao = TFGImpl.getInstance();
-				tfgdao.create("user", titulo, resumen, tutor, "", "", 0);
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			RequestDispatcher view = req.getRequestDispatcher("profile.jsp");
-	        view.forward(req, resp);
-		}
 		
 	}
 }
